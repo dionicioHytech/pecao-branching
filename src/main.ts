@@ -2,19 +2,20 @@ import { injectContent } from "./content";
 import type { Ticket } from "./interfaces/ticket";
 import "./style.css";
 
+
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="container">
     <form action="#">
-        <div>
-          <label for="ticketId">Ticket ID:</label>
+        <div class="form-group">
+          <label for="ticketId">Ticket ID</label>
           <input type="text" id="ticketId" name="ticketId" wrap="soft">
         </div>
-        <div>
-          <label for="ticketTitle">Ticket Title:</label>
+        <div class="form-group">
+          <label for="ticketTitle">Ticket Title</label>
           <input type="text" id="ticketTitle" name="ticketTitle" wrap="soft">
         </div>
-        <div>
-          <label for="ticketType">Ticket Type:</label>
+        <div class="form-group">
+          <label for="ticketType">Ticket Type</label>
           <select id="ticketType" name="ticketType">
             <option value="">-- Select Type --</option>
             <option value="bug">Bug</option>
@@ -24,16 +25,22 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           </select>
         </div>
 
-        <div>
-          <label for="generatedBranchName">Generated Branch Name:</label>
-          <input type="text" id="generatedBranchName" name="generatedBranchName" wrap="soft">
+        <div class="form-group">
+          <label for="generatedBranchName">Branch Name Suggestion</label>
+
+          <div class="input-container">
+            <input type="text" id="generatedBranchName" name="generatedBranchName" wrap="soft" autocomplete="off">
+            <span class="material-symbols-outlined icon" id="copyButton" title="Copy to Clipboard">
+              content_copy
+            </span>
+          </div>
         </div>
     </form>
 
     <!--<button type="button" id="insertButton">Insert Button</button>-->
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
         <button type="button" class="button" id="openChatGPT">Open ChatGPT</button>
-        <small>Generate Branch Name with ChatGPT</small>
+        <small>Generate branch name suggestion using ChatGPT</small>
     </div>
   </div>
 
@@ -42,23 +49,37 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </footer>
 `;
 
-
 type TicketPrompt = {
   branchName: string;
-}
+};
 
-const state: { ticket?: Ticket, prompt?: TicketPrompt } = {};
+const state: { ticket?: Ticket; prompt?: TicketPrompt } = {};
 
 const openChatGPTButton = document.getElementById("openChatGPT");
+const copyButton = document.getElementById("copyButton");
+
+
+if (copyButton) {
+  copyButton.addEventListener("click", function () {
+    const branchNameInput = document.getElementById(
+      "generatedBranchName"
+    ) as HTMLInputElement;
+
+    if (branchNameInput) {
+      const branchName = branchNameInput.value;
+      copyToClipboard(branchName);
+    }
+  });
+}
 
 openChatGPTButton!.addEventListener("click", function () {
   console.log(state);
 
   const prompt = `Generate a git branch name for the ticket with ID: ${state.ticket?.id},
-   Title: ${state.ticket?.title}, 
+   Title: ${state.ticket?.title},
    Type: ${state.ticket?.type},
    Description: ${state.ticket?.description}.
-   The generated branch name is: ${state.prompt?.branchName}. 
+   The generated branch name is: ${state.prompt?.branchName}.
    Give me a few suggestions for the branch name.`;
 
   const parameters = new URLSearchParams({
@@ -99,7 +120,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
         console.log("State ticket:", state.ticket.description);
 
-        displayTicket( response);
+        displayTicket(response);
       }
     }
   );
@@ -160,4 +181,16 @@ function generateBranchName(ticket: Ticket) {
   }
 
   return branchName;
+}
+
+
+function copyToClipboard(text: string) {
+  navigator.clipboard.writeText(text).then(
+    () => {
+      console.log("Text copied to clipboard:", text);
+    },
+    (err) => {
+      console.error("Failed to copy text to clipboard:", err);
+    }
+  );
 }
