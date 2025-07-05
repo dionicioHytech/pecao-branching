@@ -1,7 +1,7 @@
 {
   "name": "Pecao Branching",
   "description": "A Chrome extension to manage and visualize branching from Zoho Sprint and create branch name suggestions.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "manifest_version": 3,
   "icons": {
     "16": "images/icon-16.png",
