@@ -8,10 +8,6 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         <div>
           <label for="ticketId">Ticket ID:</label>
           <input type="text" id="ticketId" name="ticketId" wrap="soft">
-
-            <span class="material-symbols-outlined">search</span>
-            <span class="material-symbols-outlined">home</span>
-            <span class="material-symbols-outlined">content_copy</span>
         </div>
         <div>
           <label for="ticketTitle">Ticket Title:</label>
