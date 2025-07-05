@@ -6,11 +6,26 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  --accent-color: #e85424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* width: 500px; */
+  display: flex;
+  place-items: center;
+  justify-content: center;
 }
 
 a {
@@ -23,13 +38,11 @@ a:hover {
 }
 
 body {
-  margin: 0;
   /* padding:0; */
-  display: flex;
-  place-items: center;
-  justify-content: space-between;
+
   min-width: 320px;
   min-height: 100vh;
+  width: 500px;
 }
 
 h1 {
@@ -44,22 +57,29 @@ p {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  width: 100%;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
   /* padding: 0 2rem 2rem; */
-  text-align: center;
+  /* text-align: center; */
 }
 
 .container {
-  padding: 2em;
+  padding: 2em 0;
+  width: 100%;
   /* background-color: pink; */
 }
 
 footer {
-    display: flex;
-    justify-content: center;
-    /* background-color: rgba(100, 108, 255, 0.1); */
-    padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  /* background-color: rgba(100, 108, 255, 0.1); */
+  padding: 0.5rem;
 }
 
 button {
@@ -94,3 +114,66 @@ button:focus-visible {
   }
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: 2px solid #646cff;
+  border-color: #646cff;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2);
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: var(--accent-color);
+  font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 0, "opsz" 48;
+}
+
+header {
+  /* border: 1px solid #ccc; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 0;
+  /* background-color: #1a1a1a; */
+  /* color: white; */
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+header h1 span {
+  color: #646cff;
+  font-size: 0.8em;
+}
