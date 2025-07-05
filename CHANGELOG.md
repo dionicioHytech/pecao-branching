@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 - Improved the prompt passed to ChatGPT
 - Improved styles for extension (inputs, colors)
 
+### Removed
+- Remove vite default logo
 
 ## [0.0.1] - 2025-07-04
 ### Added
