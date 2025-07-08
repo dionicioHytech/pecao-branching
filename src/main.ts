@@ -3,13 +3,27 @@ import type { Ticket } from "./interfaces/ticket";
 import "./style.css";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div class="container">
+
     <!-- Tabs Navigation -->
     <div class="tabs">
-      <button class="tab-button active" data-tab="main">Branch Name Generator</button>
-      <button class="tab-button" data-tab="config">Configuration</button>
+      <button class="tab-button active" data-tab="main">
+        <span class="material-symbols-outlined">
+          home
+        </span>
+        Home
+      </button>
+      <button class="tab-button" data-tab="config">
+        <span class="material-symbols-outlined">
+          settings
+        </span>
+        Settings
+      </button>
+      <!--<button class="tab-button" data-tab="config">
+        <span class="material-symbols-outlined">groups</span>
+        Contributors
+      </button>-->
     </div>
-
+  <div class="container">
     <!-- Main Tab Content -->
     <div id="main-tab" class="tab-content active">
         <div class="loading-container" id="loadingContainer" style="display: none;">
