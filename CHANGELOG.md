@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Added IA built-in feature (Goo) thanks to @yerlinson10
+- Added tabs for configuration of the IA tokens.
+
 ### Changed
+
 ### Removed
 
 ## [1.0.0] - 2025-07-05
